@@ -1,0 +1,12 @@
+version: '2'
+services:
+  public-service:
+    build: ./public-service
+    image: public-service:1.0
+    container_name: public-service 
+    ports: 
+      - "8080:8080"
+    expose:
+      - "8080"
+
+  
