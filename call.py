@@ -4,7 +4,7 @@ class Call:
     def __init__(self, date, precinct, address, status_code) :
         self.date = date.string 
         self.precinct = precinct.string 
-        self.address = address.string.replace("X", "0") + "ST. LOUIS, MO."
+        self.address = address.string.replace("X", "0") + " ST. LOUIS, MO."
         self.status_code = status_code.string
         self.mhash = hashlib.md5()
 

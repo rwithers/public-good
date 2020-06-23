@@ -3,7 +3,8 @@ from bs4 import BeautifulSoup
 import requests
 import googlemaps 
 import os
- 
+import json
+
 from call import Call
 
 gmaps = googlemaps.Client(os.environ['API_KEY'])
@@ -28,5 +29,7 @@ for row in rows:
 
 	result = gmaps.geocode(c.getAddress())
 
-	print(result)
+	print(result[0]["formatted_address"])
+	print(result[0]["geometry"])
+
 

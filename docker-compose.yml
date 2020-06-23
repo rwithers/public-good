@@ -1,12 +1,28 @@
 version: '2'
 services:
-  public-service:
-    build: ./public-service
-    image: public-service:1.0
-    container_name: public-service 
-    ports: 
-      - "8080:8080"
-    expose:
-      - "8080"
+    db:
+        build: ./postgis
+        image: public-data:1.0 
+        volumes:
+            - ./data:/var/lib/postgresql
+            - ./sql/call-schema.sql:/docker-entrypoint-initdb.d/setup-db.sql
+        ports:
+            - "5432:5432"
+        environment:
+            - POSTGRES_DB=gis,gwc
+            - POSTGRES_USER=docker
+            - POSTGRES_PASSWORD=docker
+            - POSTGRES_MULTIPLE_EXTENSIONS=postgis,postgis_topology,postgis_raster,fuzzystrmatch,postgis_sfcgal,address_standardizer,address_standardizer_data_us
+            - POSTGRES_TEMPLATE_EXTENSIONS=true
+            - ALLOW_IP_RANGE=0.0.0.0/0
 
-  
+#    public-service:
+#	build: ./public-service
+#	image: public-service:1.0
+#	container_name: public-service 
+#	ports: 
+#	  - "8080:8080"
+#	expose:
+#	  - "8080"
+
+
