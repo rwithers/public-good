@@ -9,7 +9,7 @@ services:
         ports:
             - "5432:5432"
         environment:
-            - POSTGRES_DB=gis,gwc
+            - POSTGRES_DB=public_good_db
             - POSTGRES_USER=docker
             - POSTGRES_PASSWORD=docker
             - POSTGRES_MULTIPLE_EXTENSIONS=postgis,postgis_topology,postgis_raster,fuzzystrmatch,postgis_sfcgal,address_standardizer,address_standardizer_data_us

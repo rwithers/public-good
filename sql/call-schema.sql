@@ -10,11 +10,10 @@ create table call (
     status_code         varchar,
     location_lat        decimal,
     location_lon        decimal,
-    extended_address    json,
+    extended_address    varchar,
     primary key (call_id)
 );
 
 alter table call add column geom geometry(point,4326);
 
-create index call_hash_code_idx on call (hash_code);
-
+create unique index concurrently call_hash_code_idx on call (hash_code);
